@@ -7,21 +7,21 @@ This repository contains a stable EFI setup with working power management, graph
 ---
 
 ## Laptop Specifications 
-CPU: Intel Core i7-7500U (Kaby Lake)
-GPU: Intel HD 620
-RAM: 16 GB
-Audio Codec: ALC295
-Trackpad: I2C Precision Touchpad
-WiFi: Intel Wireless
+* CPU: Intel Core i7-7500U (Kaby Lake)
+* GPU: Intel HD 620
+* RAM: 16 GB
+* Audio Codec: ALC295
+* Trackpad: I2C Precision Touchpad
+* WiFi: Intel Wireless
 
 Note:
 This EFI configuration was tested only on the above hardware.
-It may also work on other UX370UA configurations (such as i5 models or 8GB RAM), but this has not been verified.
+May work on other UX370UA configs (i5, 8GB RAM), unverified.
 
 ---
 
 ## Bootloader 
-OpenCore
+OpenCore 1.0.6
 
 ---
 
@@ -53,12 +53,22 @@ macOS Ventura
 # Not Working 
 * Fingerprint reader
 * Side volume rocker buttons
-
+* Touchscreen (disabled intentionally)
+ 
 ---
 
-# Disabled 
-* Touchscreen (disabled intentionally)
+# Notes 
+Touchscreen:
+I modified VoodooI2CHID, where touchscreen support has been intentionally disabled. You can re-enable the touchscreen by replacing the kext with the original unmodified version.
 
+OpenCore Boot Picker:
+The boot picker is disabled by default.
+To enable it, set the following in config.plist:
+Misc → Boot → ShowPicker = true
+
+Power Button Behavior:
+The power button works in the system, but to put the laptop into sleep, you need to press and hold slightly longer than a normal press.
+ 
 ---
 
 ## Kexts 
@@ -102,18 +112,7 @@ The following SSDT patches are used:
 * SSDT-MCHC
 * SSDT-XOSI
 * SSDT-PLUG
-
-
----
-
-# Notes 
-The touchscreen is currently disabled.
-Additional documentation will be added later, including:
-
-* enabling touchscreen support
-* hiding OpenCore boot picker
-* additional configuration improvements
-
+ 
 ---
 
 # Credits 
